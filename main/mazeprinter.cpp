@@ -14,24 +14,6 @@ int main()
     std::vector<std::string> rows;
     std::vector<std::string> columns;
 
-    for(const auto& s: testmaze){
-        if(s & SOUTH){
-            rows.push_back("---");
-        }
-        else{
-            rows.push_back("   ");
-        }
-    }
-
-    for(const auto& s: testmaze){
-        if(s & WEST){
-            columns.push_back("|");
-        }
-        else{
-            columns.push_back(" ");
-        }
-    }
-
     //First row (always the same)
     for(int i = 0; i < 16; i++){
         std::cout << "o---";
@@ -39,21 +21,50 @@ int main()
     std::cout << 'o' << std::endl;
 
     int cell = 0;
-    for(int i = 0; i < 32; i++){
-        if(i%2){ //rows
-            for(int j = 1; j < 16; j++){
-                cell = (16-(i/2))*j;
-                std::cout << 'o' << rows[cell];
+    for(int i = 16; i > 1; i--){
+        // Print columns
+        for(int j = 0; j < 16; j++){
+            cell = (i-1) + 16*j;
+            if(testmaze[cell] & WEST){
+                //std::cout << "|   ";
+                printf("|   ");
             }
-            std::cout << 'o' << std::endl;
+            else{
+                //std::cout << "    ";
+                printf("    ");
+            }
         }
-        else{ // columns
-            for(int j = 1; j < 16; j++){
-                cell = (16-(i-1)/2)*j;
-                std::cout << columns[cell] << "   ";
+        std::cout << '|' << std::endl;
+
+        // Print rows
+        for(int j = 0; j < 16; j++){
+            cell = (i-1) + 16*j;
+            if(testmaze[cell] & SOUTH){
+                //std::cout << "o---";
+                printf("o---");
             }
-            std::cout << '|' << std::endl;
+            else{
+                //std::cout << "o   ";
+                printf("o   ");
+            }
+        }
+        std::cout << 'o' << std::endl;
+    }
+    for(int j = 0; j < 16; j++){
+        cell = 16*j;
+        if(testmaze[cell] & WEST){
+            printf("|   ");
+        }
+        else{
+            printf("    ");
         }
     }
+    std::cout << '|' << std::endl;
+
+    for(int i = 0; i < 16; i++){
+        std::cout << "o---";
+    }
+    std::cout << 'o' << std::endl;
+
     return 0;
 }

@@ -1,3 +1,3 @@
 all:
-	g++ -o mazeprinter mazeprinter.cpp
+	g++ -g -o mazeprinter mazeprinter.cpp
 	./mazeprinter
