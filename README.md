@@ -1,2 +1,1 @@
-# Micromouse2019
-CSULB IEEE 2019 Micromouse
+# MIGRATED TO https://github.com/ricardoalcaraz/TheJerrys
